@@ -10,7 +10,8 @@ data class Book(
     var author: String,
     var isbn: String,
     var numOfPages: Int,
-    var rating: Int) : Serializable{
-    @PrimaryKey (autoGenerate = true)
+    var rating: Int
+) : Serializable {
+    @PrimaryKey(autoGenerate = true)
     var id: Int? = null
 }

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android = "http://schemas.android.com/apk/res/android"
+    xmlns:app = "http://schemas.android.com/apk/res-auto"
+    android:layout_height = "wrap_content"
+    android:layout_width = "match_parent">
+
+    <!-- ICON + BOOK DETAILS TITLE-->
+    <ImageView
+        android:id = "@+id/bookIconImageView"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:src = "@drawable/ic_book_120dp"
+        android:layout_marginStart = "14dp"
+        android:layout_marginTop = "32dp"
+        app:layout_constraintTop_toTopOf = "parent"
+        app:layout_constraintStart_toStartOf = "parent" />
+
+    <TextView
+        android:id = "@+id/pageTitleTextView"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:textSize = "32sp"
+        android:textStyle = "bold"
+        android:textAllCaps = "true"
+        app:layout_constraintTop_toTopOf = "@+id/bookIconImageView"
+        app:layout_constraintBottom_toBottomOf = "@+id/bookIconImageView"
+        app:layout_constraintStart_toStartOf = "@+id/bookTitleEditText"
+    />
+
+
+    <!-- TITLE -->
+    <TextView
+        android:id = "@+id/bookTitleLabel"
+        android:text = "@string/bookTitle"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:textSize = "24sp"
+        android:layout_marginTop = "48dp"
+        android:layout_marginStart = "32dp"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toBottomOf = "@+id/bookIconImageView" />
+
+    <EditText
+        android:id = "@+id/bookTitleEditText"
+        android:hint = "@string/bookTitleHint"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:textSize = "16sp"
+        android:layout_marginStart = "48dp"
+        app:layout_constraintStart_toEndOf = "@+id/bookTitleLabel"
+        app:layout_constraintBottom_toBottomOf = "@+id/bookTitleLabel"
+        app:layout_constraintTop_toTopOf = "@+id/bookTitleLabel" />
+
+
+    <!-- AUTHOR -->
+    <TextView
+        android:id = "@+id/bookAuthorLabel"
+        android:text = "@string/bookAuthor"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:textSize = "24sp"
+        android:layout_marginStart = "32dp"
+        android:layout_marginTop = "12dp"
+        app:layout_constraintTop_toBottomOf = "@+id/bookTitleLabel"
+        app:layout_constraintStart_toStartOf = "parent" />
+
+    <EditText
+        android:id = "@+id/bookAuthorEditText"
+        android:hint = "@string/bookAuthorHint"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:textSize = "16sp"
+        app:layout_constraintStart_toStartOf = "@+id/bookTitleEditText"
+        app:layout_constraintTop_toTopOf = "@+id/bookAuthorLabel"
+        app:layout_constraintBottom_toBottomOf = "@+id/bookAuthorLabel" />
+
+
+    <!-- ISBN -->
+    <TextView
+        android:id = "@+id/bookIsbnLabel"
+        android:text = "@string/bookIsbn"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:textSize = "24sp"
+        android:layout_marginTop = "12dp"
+        android:layout_marginStart = "32dp"
+        app:layout_constraintTop_toBottomOf = "@+id/bookAuthorLabel"
+        app:layout_constraintStart_toStartOf = "parent"
+    />
+
+    <EditText
+        android:id = "@+id/bookIsbnEditText"
+        android:hint = "@string/bookIsbnHint"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:textSize = "16sp"
+        android:digits = "0123456789"
+        android:inputType = "number"
+        app:layout_constraintStart_toStartOf = "@+id/bookAuthorEditText"
+        app:layout_constraintTop_toTopOf = "@+id/bookIsbnLabel"
+        app:layout_constraintBottom_toBottomOf = "@+id/bookIsbnLabel"
+    />
+
+    <!-- NUM OF PAGES -->
+    <TextView
+        android:id = "@+id/bookNumOfPagesLabel"
+        android:text = "@string/bookPages"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:textSize = "24sp"
+        android:layout_marginTop = "12dp"
+        android:layout_marginStart = "32dp"
+        app:layout_constraintTop_toBottomOf = "@+id/bookIsbnLabel"
+        app:layout_constraintStart_toStartOf = "parent"
+    />
+
+    <EditText
+        android:id = "@+id/bookNumOfPagesEditText"
+        android:hint = "@string/bookPagesHint"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:textSize = "16sp"
+        android:digits = "0123456789"
+        android:inputType = "number"
+        app:layout_constraintTop_toTopOf = "@+id/bookNumOfPagesLabel"
+        app:layout_constraintBottom_toBottomOf = "@+id/bookNumOfPagesLabel"
+        app:layout_constraintStart_toStartOf = "@+id/bookIsbnEditText"
+    />
+
+
+    <!-- RATING -->
+    <TextView
+        android:id = "@+id/bookRatePagesLabel"
+        android:text = "@string/bookRating"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:textSize = "24sp"
+        android:layout_marginTop = "12dp"
+        android:layout_marginStart = "32dp"
+        app:layout_constraintTop_toBottomOf = "@+id/bookNumOfPagesLabel"
+        app:layout_constraintStart_toStartOf = "parent"
+    />
+
+    <EditText
+        android:id = "@+id/bookRateEditText"
+        android:hint = "@string/bookRatingHint"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:textSize = "16sp"
+        android:layout_marginTop = "8dp"
+        android:digits = "12345"
+        android:inputType = "number"
+        app:layout_constraintStart_toStartOf = "@+id/bookNumOfPagesEditText"
+        app:layout_constraintTop_toBottomOf = "@+id/bookNumOfPagesEditText"
+        app:layout_constraintBottom_toBottomOf = "@+id/bookRatePagesLabel"
+    />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

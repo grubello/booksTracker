@@ -6,9 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import pl.rutaz.bookstracker.R
 import pl.rutaz.bookstracker.db.entities.Book
 
-class BookRecyclerAdapter(private val clickListener: BookViewHolderClickListener): RecyclerView.Adapter<BookViewHolder>() {
+class BookRecyclerAdapter(private val clickListener: BookViewHolderClickListener) :
+    RecyclerView.Adapter<BookViewHolder>() {
 
-    var bookList : List<Book> = ArrayList()
+    var bookList: List<Book> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookViewHolder {
         val inflatedView = LayoutInflater.from(parent.context).inflate(R.layout.item_book, parent, false)
@@ -20,7 +21,7 @@ class BookRecyclerAdapter(private val clickListener: BookViewHolderClickListener
     }
 
     override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
-        val book : Book = bookList[position]
+        val book: Book = bookList[position]
         holder.populate(book, clickListener)
     }
 

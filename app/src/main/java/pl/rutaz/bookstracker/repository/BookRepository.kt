@@ -2,13 +2,10 @@ package pl.rutaz.bookstracker.repository
 
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.withContext
 import pl.rutaz.bookstracker.db.BookDao
 import pl.rutaz.bookstracker.db.entities.Book
 
-class BookRepository (private val bookDao: BookDao) {
+class BookRepository(private val bookDao: BookDao) {
 
     fun getBooks(): LiveData<List<Book>> {
         return bookDao.getBooks()

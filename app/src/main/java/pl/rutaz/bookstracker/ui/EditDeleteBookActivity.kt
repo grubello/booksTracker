@@ -5,22 +5,24 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_edit_delete_book.*
+import kotlinx.android.synthetic.main.content_add_edit_delete.*
 import pl.rutaz.bookstracker.R
-import pl.rutaz.bookstracker.Utils
+import pl.rutaz.bookstracker.ValidateUtils
 import pl.rutaz.bookstracker.db.entities.Book
 import pl.rutaz.bookstracker.viewmodel.BookListViewModel
 
 class EditDeleteBookActivity : AppCompatActivity() {
 
-    private val viewModel : BookListViewModel by lazy {
+    private val viewModel: BookListViewModel by lazy {
         ViewModelProvider(this).get(BookListViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_delete_book)
+        pageTitleTextView.text = getString(R.string.bookDetailsTitle)
 
-        val book = intent.extras?.getSerializable(Utils.EXTRAS) as Book
+        val book = intent.extras?.getSerializable(ValidateUtils.EXTRAS) as Book
         setUpInputs(book)
 
         saveBookButton.setOnClickListener {
@@ -38,47 +40,49 @@ class EditDeleteBookActivity : AppCompatActivity() {
         }
     }
 
-    private fun setUpInputs(book:Book){
-        editBookTitleEditText.setText(book.title)
-        editBookAuthorEditText.setText(book.author)
-        editBookIsbnEditText.setText(book.isbn)
-        editBookNumOfPagesEditText.setText(book.numOfPages.toString())
-        editBookRateEditText.setText(book.rating.toString())
+    private fun setUpInputs(book: Book) {
+        bookTitleEditText.setText(book.title)
+        bookAuthorEditText.setText(book.author)
+        bookIsbnEditText.setText(book.isbn)
+        bookNumOfPagesEditText.setText(book.numOfPages.toString())
+        bookRateEditText.setText(book.rating.toString())
     }
 
-    private fun validateInputs() : Boolean{
+    private fun validateInputs(): Boolean {
 
-        var success  = false
+        var success = false
 
-        when (Utils.validateInputs(editBookTitleEditText,
-            editBookAuthorEditText,
-            editBookIsbnEditText,
-            editBookNumOfPagesEditText,
-            editBookRateEditText)){
+        when (ValidateUtils.validateInputs(
+            bookTitleEditText.text.toString(),
+            bookAuthorEditText.text.toString(),
+            bookIsbnEditText.text.toString(),
+            bookNumOfPagesEditText.text.toString(),
+            bookRateEditText.text.toString()
+        )) {
 
-            Utils.VALIDATE_SUCCESS -> success = true
-            Utils.ISBN_INVALID -> {
-                Toast.makeText(this,"ISBN is not valid",Toast.LENGTH_LONG).show()
+            ValidateUtils.VALIDATE_SUCCESS -> success = true
+            ValidateUtils.ISBN_INVALID -> {
+                Toast.makeText(this, "ISBN is not valid", Toast.LENGTH_LONG).show()
             }
-            Utils.INPUT_EMPTY -> {
-                Toast.makeText(this,"Typed data must not be empty",Toast.LENGTH_LONG).show()
+            ValidateUtils.INPUT_EMPTY -> {
+                Toast.makeText(this, "Typed data must not be empty", Toast.LENGTH_LONG).show()
             }
-            Utils.RATING_INVALID -> {
+            ValidateUtils.RATING_INVALID -> {
                 Toast.makeText(this, "Rating must be in 1-5 range", Toast.LENGTH_LONG).show()
             }
-            Utils.NUM_OF_PAGES_INVALID -> {
-                Toast.makeText(this,"Number of pages must not be null and greater than 0",Toast.LENGTH_LONG).show()
+            ValidateUtils.NUM_OF_PAGES_INVALID -> {
+                Toast.makeText(this, "Number of pages must not be null and greater than 0", Toast.LENGTH_LONG).show()
             }
         }
         return success
     }
 
-    private fun getUpdatedBook(book : Book) : Book{
-        book.title = editBookTitleEditText.text.toString()
-        book.author = editBookAuthorEditText.text.toString()
-        book.isbn = editBookIsbnEditText.text.toString()
-        book.numOfPages = editBookNumOfPagesEditText.text.toString().toInt()
-        book.rating = editBookRateEditText.text.toString().toInt()
+    private fun getUpdatedBook(book: Book): Book {
+        book.title = bookTitleEditText.text.toString()
+        book.author = bookAuthorEditText.text.toString()
+        book.isbn = bookIsbnEditText.text.toString()
+        book.numOfPages = bookNumOfPagesEditText.text.toString().toInt()
+        book.rating = bookRateEditText.text.toString().toInt()
 
         return book
     }

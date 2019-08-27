@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import pl.rutaz.bookstracker.R
-import pl.rutaz.bookstracker.Utils
+import pl.rutaz.bookstracker.ValidateUtils
 import pl.rutaz.bookstracker.db.entities.Book
 import pl.rutaz.bookstracker.ui.adapters.BookRecyclerAdapter
 import pl.rutaz.bookstracker.ui.adapters.BookViewHolderClickListener
@@ -18,11 +18,11 @@ import pl.rutaz.bookstracker.viewmodel.BookListViewModel
 
 class MainActivity : BookViewHolderClickListener, AppCompatActivity() {
 
-    private val viewModel : BookListViewModel by lazy {
+    private val viewModel: BookListViewModel by lazy {
         ViewModelProvider(this).get(BookListViewModel::class.java)
     }
 
-    private val adapter : BookRecyclerAdapter by lazy {
+    private val adapter: BookRecyclerAdapter by lazy {
         BookRecyclerAdapter(this)
     }
 
@@ -35,7 +35,7 @@ class MainActivity : BookViewHolderClickListener, AppCompatActivity() {
         bookListRecyclerView.adapter = adapter
 
         viewModel.bookList.observe(this, Observer {
-            if (it.isNotEmpty()){
+            if (it.isNotEmpty()) {
                 bookListRecyclerView.visibility = View.VISIBLE
                 noResultsTextView.visibility = View.GONE
 
@@ -54,8 +54,8 @@ class MainActivity : BookViewHolderClickListener, AppCompatActivity() {
     }
 
     override fun onClick(book: Book) {
-        val intent = Intent(this,EditDeleteBookActivity::class.java)
-        intent.putExtra(Utils.EXTRAS, book)
+        val intent = Intent(this, EditDeleteBookActivity::class.java)
+        intent.putExtra(ValidateUtils.EXTRAS, book)
         startActivity(intent)
     }
 }

@@ -5,7 +5,7 @@ import androidx.room.*
 import pl.rutaz.bookstracker.db.entities.Book
 
 @Dao
-interface BookDao{
+interface BookDao {
 
     @Query("SELECT * from books ORDER BY id ASC")
     fun getBooks(): LiveData<List<Book>>

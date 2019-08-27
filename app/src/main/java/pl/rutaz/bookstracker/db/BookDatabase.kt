@@ -6,27 +6,31 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import pl.rutaz.bookstracker.db.entities.Book
 
-@Database(entities = [Book::class], version = 1)
-abstract class BookDatabase : RoomDatabase(){
+@Database(entities = [Book::class], version = 1, exportSchema = false)
+abstract class BookDatabase : RoomDatabase() {
 
     abstract fun bookDao(): BookDao
 
-    companion object{
+    companion object {
 
         @Volatile
-        private var INSTANCE : BookDatabase? = null
+        private var INSTANCE: BookDatabase? = null
 
-        fun getDatabase(context: Context) : BookDatabase {
+        fun getDatabase(context: Context): BookDatabase? {
 
-            if (INSTANCE != null) {
-                return INSTANCE as BookDatabase
+            val temp = INSTANCE
+            if (temp != null) {
+                return temp
             }
 
-            synchronized(this){
-                val inst = Room.databaseBuilder(context.applicationContext, BookDatabase::class.java, "BookDatabase.db")
-                    .build()
-                INSTANCE = inst
-                return inst
+            synchronized(this) {
+                if (INSTANCE == null) {
+                    val inst =
+                        Room.databaseBuilder(context.applicationContext, BookDatabase::class.java, "BookDatabase.db")
+                            .build()
+                    INSTANCE = inst
+                }
+                return INSTANCE
             }
 
         }
